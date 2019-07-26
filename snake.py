@@ -1,11 +1,5 @@
 
 
-# -*- coding: utf-8 -*-
-
-
-
-
-#import modules
 
 import pygame
 
@@ -28,7 +22,7 @@ def collision_with_apple(snake_head, apple_X, apple_Y, grow):
     return apple_X, apple_Y, grow
 def collision_with_boundaries(snake_head):
 
-    # if snake is outside of boundaries return 1
+   
     if snake_head[0] >=display_width or snake_head[0] < 0 or snake_head[1] >=display_height or snake_head[1] < 0:
         return 1
     return 0
@@ -41,7 +35,7 @@ def collision_with_self(snake_head, snake_position):
 
 def generate_snake(snake_head, snake_position, button_direction, grow):
 
-    #uses button_direction to decide where snake head will go
+    
     if button_direction == 1:
         snake_head[0] += 10
     elif button_direction == 0:
@@ -57,7 +51,7 @@ def generate_snake(snake_head, snake_position, button_direction, grow):
 
 def display_snake(snake_position):
 
-    #uses list of snake's positions to display snake
+   
     for position in snake_position:
         pygame.draw.rect(display, player_color, pygame.Rect(position[0],position[1],10,10))
 
@@ -71,11 +65,11 @@ def play_game(snake_head, snake_position, button_direction):
 
         for event in pygame.event.get():
 
-            #ends game if you click on X
+            
             if event.type == pygame.QUIT:
                 crashed = True                                                      
             
-            #sets variable used to move snake using arrow keys
+            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 button_direction = 0
@@ -86,36 +80,36 @@ def play_game(snake_head, snake_position, button_direction):
             elif event.key == pygame.K_DOWN:
                 button_direction = 2        
         
-        #moves snake position
+        
         snake_position = generate_snake(snake_head, snake_position, button_direction, grow)
         grow = False
 
-        #display background and snake
+       
         display.fill(window_color)
         display_snake(snake_position)
         draw_apple(apple_X, apple_Y)
         pygame.display.update()
         apple_X, apple_Y, grow = collision_with_apple(snake_head, apple_X, apple_Y, grow)
        
-        #ends game loop if snake leaves the boundary
+       
         if collision_with_boundaries(snake_head) == 1:
             crashed = True
         if collision_with_self(snake_head, snake_position) == 1:
             crashed = True
         
-        clock.tick(30)
+        clock.tick(20)
         
 
 
 if __name__ == "__main__":
 
-    # set variables
+   
 
     display_width = 1900
 
     display_height = 1000
 
-    player_color = (0,255,236)
+    player_color = (168,153,255)
 
     window_color = (0,0,0)
 
@@ -124,20 +118,20 @@ if __name__ == "__main__":
     apple_color = (241,3,3)
     
 
-    #create the snake
+    
 
     snake_head = [250,250]
 
     snake_position = [[250,250],[240,250],[230,250],[220,250]]
 
 
-    #initialize pygame modules    
+     
 
     pygame.init()
 
     
 
-    #display game window
+   
 
     display = pygame.display.set_mode((display_width,display_height))
 
@@ -149,7 +143,7 @@ if __name__ == "__main__":
 
     
 
-    #start the game loop
+  
 
     play_game(snake_head, snake_position, 1)
 
