@@ -17,8 +17,8 @@ import time
 def draw_apple(apple_X,apple_Y):
     pygame.draw.rect(display, apple_color, pygame.Rect(apple_X, apple_Y,10,10))
 def generate_apple():
-    apple_X= random.randint(1,50) * 10
-    apple_Y= random.randint(1,50) * 10
+    apple_X= random.randint(1,180) * 10
+    apple_Y= random.randint(1,90) * 10
     return apple_X, apple_Y
 def collision_with_apple(snake_head, apple_X, apple_Y, grow):
     if snake_head[0] == apple_X and snake_head[1] == apple_Y:
@@ -103,7 +103,7 @@ def play_game(snake_head, snake_position, button_direction):
         if collision_with_self(snake_head, snake_position) == 1:
             crashed = True
         
-        clock.tick(200)
+        clock.tick(30)
         
 
 
@@ -111,11 +111,11 @@ if __name__ == "__main__":
 
     # set variables
 
-    display_width = 1800
+    display_width = 1900
 
-    display_height = 900
+    display_height = 1000
 
-    player_color = (0,250,0)
+    player_color = (0,255,236)
 
     window_color = (0,0,0)
 
